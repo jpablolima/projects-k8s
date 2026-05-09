@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-node
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jenkins-node
+  template:
+    metadata:
+      labels:
+        app: jenkins-node
+    spec:
+      containers:
+      - name: jenkins-node
+        image: jenkins-node:latest
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8081
