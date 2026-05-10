@@ -17,8 +17,5 @@ spec:
         image: jenkins-node:latest
         imagePullPolicy: Never
         resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 8081
