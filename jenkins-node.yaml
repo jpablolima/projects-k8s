@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: jenkins-node
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: jenkins-node
@@ -19,3 +19,12 @@ spec:
         resources:
         ports:
         - containerPort: 8081
+        
+        volumeMounts:
+        - name: jenkins-storage
+          mountPath: /opt/jenkins
+
+    volumes:
+        - name: jenkins-storage
+          persistentVolumeClaim:
+          clainName: jenkins-pvc
