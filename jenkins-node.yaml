@@ -1,30 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: jenkins-node
+
 spec:
   replicas: 1
+
   selector:
     matchLabels:
       app: jenkins-node
+
   template:
     metadata:
       labels:
         app: jenkins-node
+
     spec:
       containers:
       - name: jenkins-node
         image: jenkins-node:latest
         imagePullPolicy: Never
-        resources:
+
         ports:
         - containerPort: 8081
-        
+
         volumeMounts:
         - name: jenkins-storage
           mountPath: /opt/jenkins
 
-    volumes:
-        - name: jenkins-storage
-          persistentVolumeClaim:
-          clainName: jenkins-pvc
+      volumes:
+      - name: jenkins-storage
+        persistentVolumeClaim:
+          claimName: jenkins-pvc
