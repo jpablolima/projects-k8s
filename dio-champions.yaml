@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: champions
-    labels: 
-      app: champions
-spec: 
-  replicas: 20
+  name: champions
+  labels:
+    app: champions
+spec:
+  replicas: 3
   selector:
     matchLabels:
       app: champions
@@ -15,8 +15,8 @@ spec:
         app: champions
     spec:
       containers:
-      - name: champions
-        image: champions
-        imagePullPolicy: Never
-        ports:
-        - containerPort: 3332
+        - name: champions
+          image: champions
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3332
